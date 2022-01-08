@@ -15,8 +15,9 @@ import java.util.Scanner;
  *
  * @author: Steven Vallarsa
  *   email: stevenvallarsa@gmail.com
- *    date: 2022-00-00
- * purpose: 
+ *    date: 2022-01-07
+ * purpose: A simple program to randomly generate a fake lineage for your dog 
+ *          with up to five wacky breeds
  */
 public class DogGenetics {
 
@@ -54,7 +55,6 @@ public class DogGenetics {
         String name = scanner.nextLine();
         
         System.out.println("\nGenerating results...\n");
-        
         System.out.printf("Oh my! %s is a mix weird mix of:%n", name);
         
         
@@ -63,6 +63,7 @@ public class DogGenetics {
             
             int percentage;
             
+            // if at fifth item in list dump the remaining percentageLeft into it.
             if (breedsLeft == 1) {
                 percentage = percentageLeft;
             } else {
@@ -83,16 +84,19 @@ public class DogGenetics {
         // Display results
         for (int percentage : breedPercentages) {
             
-            boolean notRepeadBreed = true;
+            boolean notRepeatedBreed = true;
             
-            while (notRepeadBreed) {
+            // To prevent duplicate breeds, the selected breed is replaced with
+            // an empty string, and "notRepeatedBreed" becomes false to
+            // break out of while loop
+            while (notRepeatedBreed) {
                 
                 int index = random.nextInt(dogBreeds.length);
 
                 if (dogBreeds[index] != "") {
                     System.out.printf(" %2d%% %s%n" , percentage, dogBreeds[index]);
-                    dogBreeds[index] = "";
-                    notRepeadBreed = false;
+                    dogBreeds[index] = ""; 
+                    notRepeatedBreed = false;
                 } 
             }
         }
